@@ -48,6 +48,18 @@ export function DBProvider({ children }) {
       } catch (e) {}
 
       applyMigrations(localDB)
+
+      // ── Session Restore ──
+      try {
+        const saved = localStorage.getItem('mrc_session11')
+        if (saved) {
+          const s = JSON.parse(saved)
+          if (localDB.users[s.email]) {
+            setCurrentUser(localDB.users[s.email])
+          }
+        }
+      } catch (e) {}
+
       setDB(localDB)
       setLoading(false)
     }
