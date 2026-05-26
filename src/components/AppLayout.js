@@ -122,9 +122,12 @@ export default function AppLayout({ children }) {
       </div>
 
       {/* Main Content */}
-      <div style={{ flex: 1, overflowY: 'auto', minWidth: 0 }}>
-        {children}
-      </div>
+<div style={{ flex: 1, overflowY: 'auto', minWidth: 0 }}>
+  <div key={typeof window !== 'undefined' ? window.location.pathname : ''} 
+    style={{ animation: 'pageIn 0.28s cubic-bezier(0.22,1,0.36,1) both' }}>
+    {children}
+  </div>
+</div>
     </div>
   )
 }
